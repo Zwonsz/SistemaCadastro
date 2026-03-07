@@ -15,7 +15,14 @@ private ArrayList<String> perguntas = new ArrayList<>(List.of("1- Qual o nome e 
         "6- Qual o peso aproximado do pet?",
         "7- Qual a raça do pet?"));
 
-private final File file = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\formulario.txt");
+    public ArrayList<String> getPerguntas() {
+        return perguntas;
+    }
+    public String getPerguntasEspec(int i){
+        return perguntas.get(i);
+    }
+
+    private final File file = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\formulario.txt");
 
 public void criarForm() {
 
