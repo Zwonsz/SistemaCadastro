@@ -19,7 +19,9 @@ private ArrayList<String> perguntas = new ArrayList<>(List.of("1- Qual o nome e 
         return perguntas;
     }
     public String getPerguntasEspec(int i){
+
         return perguntas.get(i);
+
     }
 
     private final File file = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\formulario.txt");

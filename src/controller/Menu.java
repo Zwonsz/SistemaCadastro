@@ -1,11 +1,15 @@
 package controller;
 
+import model.Pet;
+import service.PetController;
+
 import java.util.Scanner;
 
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
-
+    Pet pet = new Pet();
+    PetController petC = new PetController();
     public void exibirMenu(){
 
         boolean rodar = true;
@@ -28,7 +32,7 @@ public class Menu {
             }
             switch (opcao){
                 case 1 :
-                    System.out.println("1");
+                    petC.cadastrarPet();
                     break;
                 case 2 :
                     System.out.println("2");

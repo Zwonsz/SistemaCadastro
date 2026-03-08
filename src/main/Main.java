@@ -1,5 +1,5 @@
-import service.PetController;
-import controller.petController;
+
+import controller.Menu;
 import formulario.Formulario;
 
 
@@ -7,11 +7,9 @@ void main() {
 
 Formulario form = new Formulario();
 form.criarForm();
-//form.lerForm();
-//Menu menu = new Menu();
-//menu.exibirMenu();
-    PetController pet = new PetController();
-    pet.cadastrarPet();
+
+    Menu menu = new Menu();
+    menu.exibirMenu();
     }
 
 
