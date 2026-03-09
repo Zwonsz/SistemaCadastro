@@ -37,5 +37,33 @@ public class Pet {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public PetTipo getTipo() {
+        return tipo;
+    }
+
+    public PetSex getSexo() {
+        return sexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public Double getIdade() {
+        return idade;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
 }
 

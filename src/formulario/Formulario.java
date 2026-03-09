@@ -1,6 +1,10 @@
 package formulario;
 
+import model.Pet;
+
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +61,33 @@ public void lerForm(){
 
 }
 
+public void criarPetCadastrado(Pet pet){
 
+    LocalDateTime agora = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm");
+    File filePet = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\" + agora.format(formatter) + "-" + pet.getNome().toUpperCase().replace(" ", "") +  ".txt");
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePet))) {
+
+        bw.write("1- " + pet.getNome());
+        bw.newLine();
+        bw.write("2- " + pet.getTipo());
+        bw.newLine();
+        bw.write("3- " + pet.getSexo());
+        bw.newLine();
+        bw.write("4- " + pet.getEndereco());
+        bw.newLine();
+        bw.write("5- " + pet.getIdade() + " anos");
+        bw.newLine();
+        bw.write("6- " + pet.getPeso() + " Kg");
+        bw.newLine();
+        bw.write("7- " + pet);
+        bw.newLine();
+
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+
+}
 
 
 

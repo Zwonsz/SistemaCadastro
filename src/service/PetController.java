@@ -4,6 +4,7 @@ import exceptions.IdadeException;
 import exceptions.NomeInvalidoException;
 import exceptions.PetPesoException;
 import formulario.Formulario;
+import model.Endereco;
 import model.Pet;
 import model.PetSex;
 import model.PetTipo;
@@ -15,12 +16,15 @@ import java.util.regex.Pattern;
 
 public class PetController {
 
-    Pet pet = new Pet();
-    public ArrayList<Pet> respostas = new ArrayList<>();
+
+    public ArrayList<Pet> petsMemoria = new ArrayList<>();
     Formulario form = new Formulario();
     Scanner scanner = new Scanner(System.in);
+    Endereco endereco = new Endereco();
 
 public void cadastrarPet() throws PetPesoException {
+    Pet pet = new Pet();
+//    Carregar pets na memória
 
     System.out.println(form.getPerguntasEspec(0));
     String nome = scanner.nextLine();
@@ -34,7 +38,7 @@ public void cadastrarPet() throws PetPesoException {
     String sexo = scanner.nextLine();
     pet.setSexo(PetSex.PetSexoPorNome(sexo)); // pet sexo exception
 
-    /// // Faltando o endereço pergunta espc 3
+    pet.setEndereco(endereco.cadastrarEndereco());
 
     System.out.println(form.getPerguntasEspec(4));
     Double idade = scanner.nextDouble();
@@ -42,17 +46,20 @@ public void cadastrarPet() throws PetPesoException {
 
     System.out.println(form.getPerguntasEspec(5));
     Double peso = scanner.nextDouble();
+    scanner.nextLine();
     pet.setPeso(validarPeso(peso)); /// peso exception
 
     System.out.println(form.getPerguntasEspec(6));
     String raca = scanner.nextLine();
     pet.setRaca(raca);
+    petsMemoria.add(pet);
+    form.criarPetCadastrado(pet);
 
 }
 
 public String validarNome(String nome){
 
-    String regex = "/^[A-Za-zÀ-ÖØ-öø-ÿ]+( [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/";
+    String regex = "^[A-Za-zÀ-ÖØ-öø-ÿ]+( [A-Za-zÀ-ÖØ-öø-ÿ]+)+$";
     Pattern pattern = Pattern.compile(regex);
 
     if (nome == null || nome.trim().isEmpty()){

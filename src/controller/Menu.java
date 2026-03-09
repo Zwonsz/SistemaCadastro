@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.*;
 import model.Pet;
 import service.PetController;
 
@@ -32,7 +33,12 @@ public class Menu {
             }
             switch (opcao){
                 case 1 :
-                    petC.cadastrarPet();
+                    try{
+                        petC.cadastrarPet();
+                    }catch (NomeInvalidoException | PetPesoException | TipoInvalidoException | SexoInvalidoException | IdadeException e){
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 2 :
                     System.out.println("2");
