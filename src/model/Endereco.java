@@ -3,11 +3,11 @@ package model;
 import java.util.Scanner;
 
 public class Endereco {
-    private int numero;
+    private String numero;
     private String cidade;
    private String rua;
 
-    public Endereco(int numero, String cidade, String rua) {
+    public Endereco(String numero, String cidade, String rua) {
         this.numero = numero;
         this.cidade = cidade;
         this.rua = rua;
@@ -21,7 +21,7 @@ public class Endereco {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Numero da casa");
-        this.numero = scanner.nextInt();
+        this.numero = scanner.nextLine();
         scanner.nextLine();
         System.out.println("Cidade");
         this.cidade = scanner.nextLine();
@@ -31,9 +31,6 @@ public class Endereco {
         return new Endereco(numero, cidade, rua);
     }
 
-    public int getNumero() {
-        return numero;
-    }
 
     public String getCidade() {
         return cidade;
@@ -43,7 +40,7 @@ public class Endereco {
         return rua;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -53,5 +50,17 @@ public class Endereco {
 
     public void setRua(String rua) {
         this.rua = rua;
+    }
+
+    @Override
+    public String toString() {
+        boolean ruaVazia = rua == null || rua.isBlank();
+        boolean numeroVazio = numero == null || numero.isBlank();
+        boolean cidadeVazia = cidade == null || cidade.isBlank();
+
+        if (ruaVazia && numeroVazio && cidadeVazia) {
+            return "NÃO INFORMADO";
+        }
+        return  rua + ", " + numero + ", " + cidade;
     }
 }

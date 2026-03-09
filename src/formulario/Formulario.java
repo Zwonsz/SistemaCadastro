@@ -13,7 +13,7 @@ public class Formulario {
 
 private ArrayList<String> perguntas = new ArrayList<>(List.of("1- Qual o nome e sobrenome do pet",
         "2- Qual o tipo do pet (Cachorro/Gato)?",
-        "3- Qual o sexo do animal?",
+        "3- Qual o sexo do animal?(Masculino/Femino)",
         "4- Qual endereço e bairro que ele foi encontrado?",
         "5- Qual a idade aproximada do pet?",
         "6- Qual o peso aproximado do pet?",
@@ -64,7 +64,7 @@ public void lerForm(){
 public void criarPetCadastrado(Pet pet){
 
     LocalDateTime agora = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
     File filePet = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\" + agora.format(formatter) + "-" + pet.getNome().toUpperCase().replace(" ", "") +  ".txt");
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePet))) {
 
@@ -80,7 +80,7 @@ public void criarPetCadastrado(Pet pet){
         bw.newLine();
         bw.write("6- " + pet.getPeso() + " Kg");
         bw.newLine();
-        bw.write("7- " + pet);
+        bw.write("7- " + pet.getRaca());
         bw.newLine();
 
     } catch (IOException e) {
