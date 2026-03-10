@@ -6,6 +6,7 @@ public class Endereco {
     private String numero;
     private String cidade;
    private String rua;
+   private String naoInformado;
 
     public Endereco(String numero, String cidade, String rua) {
         this.numero = numero;
@@ -13,8 +14,18 @@ public class Endereco {
         this.rua = rua;
     }
 
+    public Endereco(String naoInformado) {
+        this.naoInformado = naoInformado;
+    }
+
     public Endereco() {
 
+    }
+
+    public Endereco(String[] x) {
+        this.numero = x[0].trim();
+        this.cidade = x[1].trim();
+        this.rua = x[2].trim();
     }
 
     public Endereco cadastrarEndereco(){

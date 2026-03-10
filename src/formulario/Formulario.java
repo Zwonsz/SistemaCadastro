@@ -28,7 +28,7 @@ private ArrayList<String> perguntas = new ArrayList<>(List.of("1- Qual o nome e 
 
     }
 
-    private final File file = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\formulario.txt");
+    private final File file = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\form\\formulario.txt");
 
 public void criarForm() {
 
