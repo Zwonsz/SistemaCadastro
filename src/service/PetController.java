@@ -109,7 +109,7 @@ public void carregarPetsCadastrados (){
         pet.setTipo(PetTipo.PetTipoPorNome(br.readLine().substring(3)));
         pet.setSexo(PetSex.PetSexoPorNome(br.readLine().substring(3)));
         String enderec1[] = br.readLine().substring(3).split(",", -1);
-        if (enderec1[0].isBlank() && enderec1[1].isBlank() && enderec1[2].isBlank()){
+        if (enderec1[0].isBlank() && enderec1[1].isBlank() && enderec1[2].isBlank() || enderec1.length == 1){
 
         }else {
             Endereco endereco = new Endereco(enderec1);
