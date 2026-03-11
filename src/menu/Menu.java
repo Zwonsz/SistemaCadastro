@@ -1,18 +1,20 @@
-package controller;
+package menu;
 
+import controller.PetController;
 import exceptions.*;
+import formulario.Formulario;
 import model.Pet;
-import service.PetController;
+
 
 import java.util.Scanner;
 
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
-    Pet pet = new Pet();
-    PetController petC = new PetController();
+   PetController petController = new PetController();
+   Formulario form = new Formulario();
     public void exibirMenu(){
-
+    form.criarForm();
         boolean rodar = true;
         while (rodar) {
 
@@ -34,14 +36,14 @@ public class Menu {
             switch (opcao){
                 case 1 :
                     try{
-                        petC.cadastrarPet();
+                        petController.cadastrarPet();
                     }catch (NomeInvalidoException | PetPesoException | TipoInvalidoException | SexoInvalidoException | IdadeException e){
                         System.out.println(e.getMessage());
                     }
 
                     break;
                 case 2 :
-                    System.out.println("2");
+
                     break;
                 case 3 :
                     System.out.println("3");

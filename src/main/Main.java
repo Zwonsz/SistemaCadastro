@@ -1,15 +1,13 @@
 
-import controller.Menu;
+import menu.Menu;
 import formulario.Formulario;
-import service.PetController;
+
 
 
 void main() {
 
-Formulario form = new Formulario();
-form.criarForm();
-    PetController petC = new PetController();
-    petC.carregarPetsCadastrados();
+    Formulario form = new Formulario();
+    form.criarForm();
     Menu menu = new Menu();
     menu.exibirMenu();
     }

@@ -6,7 +6,6 @@ public class Endereco {
     private String numero;
     private String cidade;
    private String rua;
-   private String naoInformado;
 
     public Endereco(String numero, String cidade, String rua) {
         this.numero = numero;
@@ -14,9 +13,6 @@ public class Endereco {
         this.rua = rua;
     }
 
-    public Endereco(String naoInformado) {
-        this.naoInformado = naoInformado;
-    }
 
     public Endereco() {
 
@@ -28,19 +24,6 @@ public class Endereco {
         this.rua = x[2].trim();
     }
 
-    public Endereco cadastrarEndereco(){
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Numero da casa");
-        this.numero = scanner.nextLine();
-        scanner.nextLine();
-        System.out.println("Cidade");
-        this.cidade = scanner.nextLine();
-        System.out.println("Rua");
-        this.rua = scanner.nextLine();
-
-        return new Endereco(numero, cidade, rua);
-    }
 
 
     public String getCidade() {
@@ -72,6 +55,6 @@ public class Endereco {
         if (ruaVazia && numeroVazio && cidadeVazia) {
             return "NÃO INFORMADO";
         }
-        return  rua + ", " + numero + ", " + cidade;
+        return  rua + ", " + cidade + ", " + numero;
     }
 }
