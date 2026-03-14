@@ -15,6 +15,12 @@ public class PetRepository {
 
     private ArrayList<Pet> petRepository = new ArrayList<>();
 
+
+
+    public ArrayList<Pet> getPetRepository() {
+        return petRepository;
+    }
+
     public void adicionarPet(Pet pet){
         petRepository.add(pet);
     }
@@ -29,19 +35,31 @@ public class PetRepository {
             try(BufferedReader br = new BufferedReader(new FileReader(file))){
                 Pet pet = new Pet();
                 pet.setNome(br.readLine().substring(3));
-                pet.setTipo(PetTipo.PetTipoPorNome(br.readLine().substring(3)));
-                pet.setSexo(PetSex.PetSexoPorNome(br.readLine().substring(3)));
-                String enderec1[] = br.readLine().substring(3).split(",", -1);
-                if (enderec1[0].isBlank() && enderec1[1].isBlank() && enderec1[2].isBlank() || enderec1.length == 1){
 
+
+                pet.setTipo(PetTipo.PetTipoPorNome(br.readLine().substring(3)));
+
+
+                pet.setSexo(PetSex.PetSexoPorNome(br.readLine().substring(3)));
+
+
+                String enderec1[] = br.readLine().substring(3).split(",", -1);
+
+
+                if (enderec1[0].isBlank() && enderec1[1].isBlank() && enderec1[2].isBlank() || enderec1.length == 1){
+                    pet.setEndereco(new Endereco());
                 }else {
                     Endereco endereco = new Endereco(enderec1);
                     pet.setEndereco(endereco);
                 }
                 String idade = br.readLine().substring(3).replace("anos", "");
                 pet.setIdade(Double.valueOf(idade));
+
+
                 String peso = br.readLine().substring(3).replace("Kg", "");
                 pet.setPeso(Double.parseDouble(peso));
+
+
                 pet.setRaca(br.readLine().substring(3));
                 petRepository.add(pet);
 

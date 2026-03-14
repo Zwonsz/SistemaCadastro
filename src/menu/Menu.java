@@ -4,15 +4,26 @@ import controller.PetController;
 import exceptions.*;
 import formulario.Formulario;
 import model.Pet;
+import repository.PetRepository;
+import service.PetService;
 
 
 import java.util.Scanner;
 
 public class Menu {
 
+    private PetRepository petRepository;
     private Scanner scanner = new Scanner(System.in);
-   PetController petController = new PetController();
-   Formulario form = new Formulario();
+   private PetController petController;
+   private Formulario form = new Formulario();
+
+
+    public Menu(PetRepository petRepository) {
+        this.petRepository = petRepository;
+        this.petController = new PetController(petRepository);
+    }
+
+
     public void exibirMenu(){
     form.criarForm();
         boolean rodar = true;
@@ -49,7 +60,7 @@ public class Menu {
                     System.out.println("3");
                     break;
                 case 4 :
-                    System.out.println("4");
+                    petController.listarTodosOsPetsCadastrados();
                     break;
                 case 5 :
                     System.out.println("5");

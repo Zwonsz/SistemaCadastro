@@ -5,21 +5,27 @@ import exceptions.PetPesoException;
 import formulario.Formulario;
 import model.Endereco;
 import model.Pet;
+import repository.PetRepository;
 import service.PetService;
 
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class PetController {
 
-    Formulario form = new Formulario();
-    Scanner scanner = new Scanner(System.in);
-    PetService petService = new PetService();
+    private PetRepository petRepository;
+    private Formulario form = new Formulario();
+    private Scanner scanner = new Scanner(System.in);
+    private PetService petService;
+
+    public PetController(PetRepository petRepository) {
+        this.petRepository = petRepository;
+        this.petService = new PetService(petRepository);
+    }
 
 
-public void cadastrarPet() throws PetPesoException {
+    public void cadastrarPet() throws PetPesoException {
     Pet pet = new Pet();
 
 //    Carregar pets na memória
@@ -56,7 +62,11 @@ public void cadastrarPet() throws PetPesoException {
 
 }
 
-
+public void listarTodosOsPetsCadastrados(){
+    for (Pet pet : petService.todosOsPetsCadastrados()){
+        System.out.println(pet);
+    }
+}
 
 
 

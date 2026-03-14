@@ -65,5 +65,11 @@ public class Pet {
     public String getRaca() {
         return raca;
     }
+
+    @Override
+    public String toString() {
+        return nome + " - " + tipo + " - " + sexo + " - " + endereco + " - " + idade +
+                " anos - " + peso + " Kgs - " + raca;
+    }
 }
 

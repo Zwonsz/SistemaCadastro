@@ -1,8 +1,5 @@
 package service;
 
-import exceptions.IdadeException;
-import exceptions.NomeInvalidoException;
-import exceptions.PetPesoException;
 import formulario.Formulario;
 import model.Endereco;
 import model.Pet;
@@ -11,13 +8,17 @@ import model.PetTipo;
 import repository.PetRepository;
 import util.Validador;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+
 
 public class PetService {
 
-    PetRepository petRepository = new PetRepository();
+   public  PetRepository petRepository;
     Formulario form = new Formulario();
+
+    public PetService(PetRepository petRepository) {
+        this.petRepository = petRepository;
+    }
 
     public void cadastrarPet(String nomePet, String tipopet, String sexoPet, Endereco endereco,
                              Double idade,
@@ -35,6 +36,11 @@ public class PetService {
         form.criarPetCadastrado(pet);
         petRepository.adicionarPet(pet);
 
+    }
+
+
+    public ArrayList<Pet> todosOsPetsCadastrados(){
+        return  petRepository.getPetRepository();
     }
 
 
