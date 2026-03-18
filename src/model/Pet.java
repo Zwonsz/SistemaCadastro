@@ -7,14 +7,14 @@ public class Pet {
     private PetSex sexo;
     private Endereco endereco;
     private Double idade;
-    private double peso;
+    private Double peso;
     private String raca;
 
     public void setRaca(String raca) {
         this.raca = raca;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
@@ -58,7 +58,7 @@ public class Pet {
         return idade;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 

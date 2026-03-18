@@ -63,7 +63,7 @@ public class Menu {
                     petController.listarTodosOsPetsCadastrados();
                     break;
                 case 5 :
-                    System.out.println("5");
+                    petController.buscarPorCritério();
                     break;
                 case 6 :
                     rodar = false;

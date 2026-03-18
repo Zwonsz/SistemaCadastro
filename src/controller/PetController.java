@@ -9,6 +9,7 @@ import repository.PetRepository;
 import service.PetService;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -68,7 +69,56 @@ public void listarTodosOsPetsCadastrados(){
     }
 }
 
+public void buscarPorCritério(){
 
+    System.out.println("""
+            Escolha até dois dos seguintes critérios de busca:
+   
+            1 - Nome
+            2 - Sexo
+            3 - Idade
+            4 - Peso
+            5 - Raça
+            """);
+
+    String criterio1 = scanner.nextLine().toLowerCase();
+    System.out.println("""
+            Escolha o segundo criterio ou aperte enter para pular:
+   
+            1 - Nome
+            2 - Sexo
+            3 - Idade
+            4 - Peso
+            5 - Raça
+            """);
+    String criterio2 = scanner.nextLine().toLowerCase();
+
+    System.out.println("Digite agora o " + criterio1 + " para a busca:");
+
+    String valor1 = scanner.nextLine();
+
+    String valor2;
+
+    if (criterio2.isBlank()){
+        criterio2 = null;
+        valor2 = null;
+    }else {System.out.println("Digite agora o " + criterio2 + " para a busca:");
+         valor2 = scanner.nextLine();}
+
+    ArrayList<Pet> resultadoBusca = petService.buscador(criterio1,valor1,criterio2,valor2);
+    if (resultadoBusca.isEmpty()){
+        System.out.println("Não foram encontrados nenhum Pet que se encaixe nos parametros fornecidos. Tente novamente com outros parametros.\n");
+    }else {
+        for (Pet pet : resultadoBusca){
+            System.out.println(pet.getNome() + " - " + pet.getTipo() + " - " + pet.getSexo() + " - " + pet.getEndereco() +
+                    " - " + pet.getIdade() + " - " + pet.getPeso() + " - " + pet.getRaca());
+        }
+    }
+
+
+
+
+}
 
 
 

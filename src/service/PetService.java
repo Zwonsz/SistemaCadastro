@@ -8,13 +8,17 @@ import model.PetTipo;
 import repository.PetRepository;
 import util.Validador;
 
+import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class PetService {
 
    public  PetRepository petRepository;
     Formulario form = new Formulario();
+
 
     public PetService(PetRepository petRepository) {
         this.petRepository = petRepository;
@@ -43,10 +47,43 @@ public class PetService {
         return  petRepository.getPetRepository();
     }
 
+ public boolean comparador(Pet pet, String criterio, String valor){
+    criterio = criterio.toLowerCase();
+        switch (criterio){
 
-//    public void listPetsMemoria(){
-//
-//        for (Pet pets : petsMemoria){
-//            System.out.println(pets);
-//        }
+            case "nome":
+              return pet.getNome().toLowerCase().contains(valor.toLowerCase());
+            case "sexo":
+                return pet.getSexo().toString().equals(valor.toUpperCase());
+            case "idade":
+                return pet.getIdade().equals(Double.parseDouble(valor));
+            case "peso":
+                return pet.getPeso().equals(Double.parseDouble(valor));
+            case "raca":
+                return pet.getRaca().equalsIgnoreCase(valor);
+            default:
+                return false;
+
+        }
+ }
+
+ public ArrayList<Pet> buscador(String criterio, String valor, String criterio2, String valor2){
+     ArrayList<Pet> matches = new ArrayList<>();
+     for(Pet pet : todosOsPetsCadastrados()){
+         Boolean criterioBoolean1 = comparador(pet, criterio, valor);
+         Boolean criterioBoolean2 = true;
+            if (!(criterio2 == null) && !(valor2 == null)){
+                criterioBoolean2 = comparador(pet, criterio2, valor2);
+            }
+
+         if (criterioBoolean1 && criterioBoolean2){
+             matches.add(pet);
+         }
+
+
+     }
+     return matches;
+
+ }
+
 }
