@@ -9,6 +9,7 @@ import repository.PetRepository;
 import service.PetService;
 
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,7 +70,7 @@ public void listarTodosOsPetsCadastrados(){
     }
 }
 
-public void buscarPorCritério(){
+public ArrayList buscarPorCriterio(){
 
     System.out.println("""
             Escolha até dois dos seguintes critérios de busca:
@@ -116,10 +117,80 @@ public void buscarPorCritério(){
     }
 
 
-
+return resultadoBusca;
 
 }
 
+public void alterarInformacoesPet(){
+
+    System.out.println("""
+            Escolha dos seguintes critérios de busca:
+            
+            1 - Nome
+            2 - Sexo
+            3 - Idade
+            4 - Peso
+            5 - Raça
+            """);
+    String criterio1 = scanner.nextLine().toLowerCase();
+
+    System.out.println("Digite agora o " + criterio1 + " para a busca:");
+
+    String valor1 = scanner.nextLine();
+    String s = null;
+    String b = null;
+
+    ArrayList<Pet> resultadoBusca = petService.buscador(criterio1, valor1, s, b);
+    if (resultadoBusca.isEmpty()){
+        System.out.println("Não foram encontrados nenhum Pet que se encaixe nos parametros fornecidos. Tente novamente com outros parametros.\n");
+    }else {
+        int i = 1;
+        for (Pet pet : resultadoBusca){
+            System.out.println(i + " - " + pet.getNome() + " - " + pet.getTipo() + " - " + pet.getSexo() + " - " + pet.getEndereco() +
+                    " - " + pet.getIdade() + " - " + pet.getPeso() + " - " + pet.getRaca());
+            i++;
+        }
+    }
+    System.out.println("Digite o numero do pet que deseja editar: \n");
+    int index = scanner.nextInt();
+    index -= 1;
+    scanner.nextLine();
+    if (index < 0 || index >= resultadoBusca.size()){
+        System.out.println("Indice inválido");
+        return;
+    }
+
+    System.out.println("""
+            Digite qual atributo deseja editar:
+            
+            Nome
+            Idade
+            Peso
+            Raça
+            Endereço
+          \n
+            """);
+    String atributo = scanner.nextLine();
+    Endereco endereco = null;
+    String novoValorAtributo = null;
+    if (atributo.toLowerCase().replace("ç", "c").equals("endereco")){
+        System.out.println("Digite o numero:");
+        String numero = scanner.nextLine();
+        System.out.println("Digite a cidade:");
+        String cidade = scanner.nextLine();
+        System.out.println("Digite a rua: ");
+        String rua = scanner.nextLine();
+        endereco = new Endereco(numero,cidade,rua);
+    }else {
+        System.out.println("\nDigite o novo valor de " + atributo + ":\n");
+        novoValorAtributo = scanner.nextLine();
+    }
+
+    Pet pet = petService.alterarInformacoes(atributo,novoValorAtributo,resultadoBusca,index,endereco);
+    petRepository.atualizarPet(pet);
+
+
+}
 
 
 }

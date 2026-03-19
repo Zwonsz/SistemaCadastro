@@ -3,9 +3,7 @@ package menu;
 import controller.PetController;
 import exceptions.*;
 import formulario.Formulario;
-import model.Pet;
 import repository.PetRepository;
-import service.PetService;
 
 
 import java.util.Scanner;
@@ -54,7 +52,7 @@ public class Menu {
 
                     break;
                 case 2 :
-
+                petController.alterarInformacoesPet();
                     break;
                 case 3 :
                     System.out.println("3");
@@ -63,7 +61,7 @@ public class Menu {
                     petController.listarTodosOsPetsCadastrados();
                     break;
                 case 5 :
-                    petController.buscarPorCritério();
+                    petController.buscarPorCriterio();
                     break;
                 case 6 :
                     rodar = false;

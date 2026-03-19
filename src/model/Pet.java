@@ -9,6 +9,7 @@ public class Pet {
     private Double idade;
     private Double peso;
     private String raca;
+    private String caminhoArquivo;
 
     public void setRaca(String raca) {
         this.raca = raca;
@@ -70,6 +71,14 @@ public class Pet {
     public String toString() {
         return nome + " - " + tipo + " - " + sexo + " - " + endereco + " - " + idade +
                 " anos - " + peso + " Kgs - " + raca;
+    }
+
+    public void setCaminhoArquivo(String caminhoArquivo) {
+        this.caminhoArquivo = caminhoArquivo;
+    }
+
+    public String getCaminhoArquivo() {
+        return caminhoArquivo;
     }
 }
 

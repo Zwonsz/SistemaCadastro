@@ -66,6 +66,7 @@ public void criarPetCadastrado(Pet pet){
     LocalDateTime agora = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm");
     File filePet = new File("C:\\Users\\Pedro\\IdeaProjects\\sistemaCadastro\\src\\data\\" + agora.format(formatter) + "-" + pet.getNome().toUpperCase().replace(" ", "") +  ".txt");
+    pet.setCaminhoArquivo(filePet.getAbsolutePath());
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePet))) {
 
         bw.write("1- " + pet.getNome());

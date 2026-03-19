@@ -12,6 +12,7 @@ import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Scanner;
 
 
 public class PetService {
@@ -83,6 +84,36 @@ public class PetService {
 
      }
      return matches;
+
+ }
+
+public Pet alterarInformacoes( String atributo, String novoValorAtributo, ArrayList<Pet> list, int index, Endereco endereco){
+
+        Pet pet = list.get(index);
+    Scanner scanner = new Scanner(System.in);
+        String r = atributo.toLowerCase().replace("ç", "c");
+switch (r){
+    case "nome":
+        pet.setNome(novoValorAtributo);
+        break;
+    case "idade":
+        pet.setIdade(Double.parseDouble(novoValorAtributo));
+        break;
+    case "peso":
+        pet.setPeso(Double.parseDouble(novoValorAtributo));
+        break;
+    case "raca":
+        pet.setRaca(novoValorAtributo);
+        break;
+    case "endereco":
+        pet.setEndereco(endereco);
+        break;
+    default:
+        System.out.println("Atributo não disponível para edição, tente novamente.");
+        break;
+}
+return pet;
+
 
  }
 

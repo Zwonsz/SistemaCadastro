@@ -1,14 +1,12 @@
 package repository;
 
+import exceptions.SalvarArquivoException;
 import model.Endereco;
 import model.Pet;
 import model.PetSex;
 import model.PetTipo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class PetRepository {
@@ -35,7 +33,7 @@ public class PetRepository {
                 Pet pet = new Pet();
                 pet.setNome(br.readLine().substring(3));
 
-
+                pet.setCaminhoArquivo(file.getAbsolutePath());
                 pet.setTipo(PetTipo.PetTipoPorNome(br.readLine().substring(3)));
 
 
@@ -70,6 +68,30 @@ public class PetRepository {
 
     }
 
+    public void atualizarPet (Pet pet) {
+        File file = new File(pet.getCaminhoArquivo());
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+
+            bw.write("1- " + pet.getNome());
+            bw.newLine();
+            bw.write("2- " + pet.getTipo());
+            bw.newLine();
+            bw.write("3- " + pet.getSexo());
+            bw.newLine();
+            bw.write("4- " + pet.getEndereco());
+            bw.newLine();
+            bw.write("5- " + pet.getIdade() + " anos");
+            bw.newLine();
+            bw.write("6- " + pet.getPeso() + " Kg");
+            bw.newLine();
+            bw.write("7- " + pet.getRaca());
+            bw.newLine();
+
+        } catch (SalvarArquivoException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 }
 
 
