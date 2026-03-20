@@ -1,5 +1,6 @@
 package service;
 
+import exceptions.ListaVaziaException;
 import formulario.Formulario;
 import model.Endereco;
 import model.Pet;
@@ -71,9 +72,9 @@ public class PetService {
  public ArrayList<Pet> buscador(String criterio, String valor, String criterio2, String valor2){
      ArrayList<Pet> matches = new ArrayList<>();
      for(Pet pet : todosOsPetsCadastrados()){
-         Boolean criterioBoolean1 = comparador(pet, criterio, valor);
-         Boolean criterioBoolean2 = true;
-            if (!(criterio2 == null) && !(valor2 == null)){
+         boolean criterioBoolean1 = comparador(pet, criterio, valor);
+         boolean criterioBoolean2 = true;
+            if (criterio2 != null && valor2 != null){
                 criterioBoolean2 = comparador(pet, criterio2, valor2);
             }
 

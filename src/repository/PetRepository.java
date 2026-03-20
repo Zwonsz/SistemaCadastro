@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.ListaVaziaException;
 import exceptions.SalvarArquivoException;
 import model.Endereco;
 import model.Pet;
@@ -68,7 +69,7 @@ public class PetRepository {
 
     }
 
-    public void atualizarPet (Pet pet) {
+    public void atualizarPet(Pet pet) {
         File file = new File(pet.getCaminhoArquivo());
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 
@@ -90,8 +91,9 @@ public class PetRepository {
         } catch (SalvarArquivoException | IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
+
+
 }
 
 
